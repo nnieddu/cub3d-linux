@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 13:00:49 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/25 17:53:12 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/28 15:53:07 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		ft_check_args(t_cub3d *game, int ac, char **av)
 	}
 	if (ac < 2)
 	{
-		ft_putstr("Error\nToo few arguments (you need a map !\n");
+		ft_putstr("Error\nToo few arguments (you need a map !)\n");
 		ft_exit(game, 0);
 	}
 	if (ac == 3)

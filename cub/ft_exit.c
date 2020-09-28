@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 15:31:57 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/18 16:05:44 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/28 15:53:16 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		ft_exit_texture(t_cub3d *game)
 int			ft_exit(t_cub3d *game, int x)
 {
 	if (x == 1)
-		ft_putstr("Error\nMlx error or allocation error.");
+		ft_putstr("Error\nMlx error or allocation error.\n");
 	if (game->tracked > 0 && game->screenshot == 0)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	if (game->tracked > 1)
