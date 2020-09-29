@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:17:53 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 11:56:43 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 14:44:13 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,38 +36,6 @@ void		ft_catch_res(t_cub3d *game, char *line, int i)
 		ft_putstr("Error\nEmpty or bad resolution on arg R");
 		ft_putstr(" (need to be less than int max)");
 		ft_exit(game, 0);
-	}
-}
-
-int			ft_check_number_next(char *line, int j)
-{
-	if (line[j] <= 48 || line[j] >= 57)
-		j++;
-	if (line[j] != '\0' && line[j] == ' ')
-		while (line[j] != '\0' && line[j] == ' ')
-			j++;
-	return (j);
-}
-
-void		ft_check_number(t_cub3d *game, char *line, int j)
-{
-	while (line[j] != '\0')
-	{
-		j = ft_check_number_next(line, j);
-		if (line[j] != '\0' && (line[j] <= 48 || line[j] >= 57))
-		{
-			while (line[j] != '\0' && (line[j] >= 48 && line[j] <= 57))
-				j++;
-			while (line[j] != '\0' && line[j] == ' ')
-				j++;
-			if (line[j] != '\0' && line[j] != ',')
-			{
-				ft_putstr("Error\nArgument F or C had a bad format.\n");
-				ft_exit(game, 0);
-			}
-		}
-		if (line[j] != '\0')
-			j++;
 	}
 }
 

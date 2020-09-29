@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 15:30:15 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/25 17:03:20 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 14:40:30 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ void		ft_init_game_struct(t_cub3d *game)
 	game->arg_r = 0;
 	game->skip = 0;
 	game->z = 0;
+	game->check_color = 0;
 	ft_init_game_struct_next(game);
 }

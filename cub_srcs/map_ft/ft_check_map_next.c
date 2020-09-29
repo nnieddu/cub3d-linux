@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 15:16:07 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/21 14:52:43 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 13:02:39 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,16 @@ void		ft_check_empty_line(t_cub3d *game, int i, int j, int s)
 		j--;
 	}
 	ft_check_empty_line_next(game, -1, 0, s);
+	i = 0;
+	while (game->map[1][i] != '\0')
+	{
+		if (game->map[1][i] == '0' && i > ft_strlen(game->map[0]) - 1)
+		{
+			ft_putstr("Error\nThere's a hole in the first line.");
+			ft_exit(game, 0);
+		}
+		i++;
+	}
 }
 
 void		ft_first_and_last_check(t_cub3d *game, int i)
@@ -109,7 +119,7 @@ void		ft_first_and_last_check(t_cub3d *game, int i)
 	{
 		if (game->map[0][i] == '0')
 		{
-			ft_putstr("Error\nThere's a hole in the first line.");
+			ft_putstr("Error\nThere's a hole or 0 out in the first line.");
 			ft_exit(game, 0);
 		}
 		i++;
@@ -119,7 +129,7 @@ void		ft_first_and_last_check(t_cub3d *game, int i)
 	{
 		if (game->map[game->maplinecount][i] == '0')
 		{
-			ft_putstr("Error\nThere's a hole in the last line.");
+			ft_putstr("Error\nThere's a hole or 0 out in the last linee.");
 			ft_exit(game, 0);
 		}
 		i++;

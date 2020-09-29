@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 15:34:56 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/25 17:53:50 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 12:45:17 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void		ft_check_0_out(t_cub3d *game, int i, int j)
 {
 	while (game->map[++i])
 	{
-		while (game->map[i][++j] && i < game->maplinecount)
+		while (game->map[i][++j] && i != game->maplinecount)
 		{
-			if (game->map[i][j] == '0' && ft_strlen(game->map[i - 1]) < j
-			&& ft_strlen(game->map[i + 1]) < j)
+			if (game->map[i][j] == '0' && (ft_strlen(game->map[i - 1]) - 1 < j
+			|| ft_strlen(game->map[i + 1]) - 1 < j))
 			{
 				ft_putstr("Error\nA 0 is not well placed");
 				ft_exit(game, 0);

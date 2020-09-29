@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 11:48:23 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/25 17:39:21 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 14:44:24 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ typedef	struct		s_cub3d
 	int				width_check;
 	int				height_check;
 	int				maplinecount;
+	int				check_color;
 	int				z;
 }					t_cub3d;
 
@@ -220,7 +221,6 @@ void				ft_colors(t_cub3d *game, char *line, int i, int j);
 void				ft_texture_path(t_cub3d *game, char *line, int i);
 void				ft_alloc_sprite_order(t_cub3d *game);
 void				ft_check_in_map_space(t_cub3d *game, int i, int j);
-void				ft_check_number(t_cub3d *game, char *line, int j);
 void				ft_count_map_args(t_cub3d *game, char *line, int i);
 char				*ft_strdup_texture(char *s1);
 int					ft_is_map_ok(t_cub3d *game, int i, int n, int o);

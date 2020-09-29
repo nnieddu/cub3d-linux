@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/18 15:25:51 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/19 11:05:04 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 14:54:45 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		ft_init_colors(t_cub3d *game, t_color color, char *line, int x)
 	if (line[x] == 'F')
 	{
 		game->color_floor = color.color;
+		printf("%d\n", game->color_floor);
 		game->verif_f++;
 	}
 	if (line[x] == 'C')
@@ -34,7 +35,7 @@ void		ft_error_colors(t_cub3d *game, int i, int j)
 	if (game->tab_color[0] == NULL || game->tab_color[1] == NULL ||
 		game->tab_color[2] == NULL)
 	{
-		ft_putstr("Error\nArgument F or C had a bad format\n");
+		ft_putstr("Error\nArgument F or C have a bad format\n");
 		ft_exit(game, 0);
 	}
 	if (0 > ft_atoi(game->tab_color[0]) || ft_atoi(game->tab_color[0]) > 255
@@ -58,29 +59,28 @@ void		ft_error_colors(t_cub3d *game, int i, int j)
 	}
 }
 
-void		ft_check_path_colors(t_cub3d *game, char *line, int j)
+void		ft_check_path_colors(t_cub3d *game, char *line, int i, int j)
 {
-	if (game->arg_r > 2)
-	{
-		ft_putstr("Error\nToo much R argument.\n");
-		ft_exit(game, 0);
-	}
-	if (line[j] == '.')
-	{
-		ft_putstr("Error\nArgument F and C need RGB color code\n");
-		ft_exit(game, 0);
-	}
 	if (!(game->tab_color = ft_split(&line[j], ',')))
 		ft_exit(game, 1);
-	while (line[j] != '\0' && line[j] == ' ')
-		j++;
-	ft_check_number(game, line, j);
-	while (line[j] != '\0')
+	while (i < 3)
 	{
-		if ((line[j] < 48 && line[j] < 57) && line[j] != ',' && line[j] != ' ')
+		if (game->tab_color[i][j] > 48 && game->tab_color[i][j] < 57)
 		{
-			ft_putstr("Error\nArgument F or C had a bad format\n");
-			ft_exit(game, 0);
+			while (game->tab_color[i][j] > 48 && game->tab_color[0][j] < 57)
+				j++;
+			game->check_color++;
+		}
+		if (game->tab_color[i][j] == '\0')
+		{
+			i++;
+			j = 0;
+			if (game->check_color > 1)
+			{
+				ft_putstr("Error\nArgument F or C have a bad format\n");
+				ft_exit(game, 0);
+			}
+			game->check_color = 0;
 		}
 		j++;
 	}
@@ -99,7 +99,7 @@ void		ft_check_comma(t_cub3d *game, char *line, int j, int x)
 			if ((line[x] < 48 || line[x] > 57) && line[x] != ','
 				&& line[x] != ' ')
 			{
-				ft_putstr("Error\nArgument F or C had a bad format.\n");
+				ft_putstr("Error\nArgument F or C have a bad format.\n");
 				ft_exit(game, 0);
 			}
 			x++;
@@ -110,7 +110,7 @@ void		ft_check_comma(t_cub3d *game, char *line, int j, int x)
 	}
 	if (comma != 2)
 	{
-		ft_putstr("Error\nArgument F or C had a bad format.\n");
+		ft_putstr("Error\nArgument F or C have a bad format.\n");
 		ft_exit(game, 0);
 	}
 }
@@ -127,9 +127,7 @@ void		ft_colors(t_cub3d *game, char *line, int i, int j)
 		if (line[x] == 'F' || line[x] == 'C')
 		{
 			ft_check_comma(game, line, j, x);
-			while (line[j] == ' ')
-				j++;
-			ft_check_path_colors(game, line, j);
+			ft_check_path_colors(game, line, 0, x + 1);
 			ft_error_colors(game, i, j);
 			ft_init_colors(game, color, line, x);
 			j = -1;
@@ -138,5 +136,10 @@ void		ft_colors(t_cub3d *game, char *line, int i, int j)
 			ft_memdel((void *)&(game->tab_color));
 		}
 		x++;
+	}
+	if (game->arg_r > 2)
+	{
+		ft_putstr("Error\nToo much R argument.\n");
+		ft_exit(game, 0);
 	}
 }
