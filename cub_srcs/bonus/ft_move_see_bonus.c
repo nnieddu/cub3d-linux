@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 14:04:30 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/25 17:44:17 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 10:51:29 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,12 @@ void		ft_see_r(t_cub3d *game)
 
 int			ft_key_move(t_cub3d *game)
 {
+	if (game->width != 800 || game->height != 600)
+	{
+		ft_putstr("Error\nPlease use 800*600 resolution ");
+		ft_putstr("for good display of the bonus part.\n");
+		ft_exit(game, 0);
+	}
 	game->movespeed = 0.010;
 	game->rotspeed = 0.01;
 	if (game->press_shift == 1)

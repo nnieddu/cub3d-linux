@@ -6,11 +6,11 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/26 15:04:50 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/11 11:00:56 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 10:53:39 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+#include "../ft_cub3d.h"
 
 void		ft_bitmap_image(t_cub3d *game, int fd, t_bpm2 bitinf)
 {

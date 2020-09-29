@@ -6,11 +6,11 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:17:53 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/18 16:36:24 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 10:53:27 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+#include "../ft_cub3d.h"
 
 void		ft_catch_res(t_cub3d *game, char *line, int i)
 {

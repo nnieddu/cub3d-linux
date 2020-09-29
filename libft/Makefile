@@ -6,7 +6,7 @@
 #    By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/10 14:33:30 by ninieddu          #+#    #+#              #
-#    Updated: 2020/09/03 20:41:04 by ninieddu         ###   ########lyon.fr    #
+#    Updated: 2020/09/28 21:20:08 by ninieddu         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ BNS		=	ft_lstnew_bonus.c\
 
 OBJ		=	$(SRCS:.c=.o) 
 
-OBJ2	=	$(BNS:.c=.o)
+OBJ_BONUS	=	$(BNS:.c=.o)
 
 all: 	$(NAME)
 
@@ -80,7 +80,7 @@ $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 
 bonus: $(OBJ) $(OBJ2)
-	ar rc $(NAME) $(OBJ) $(OBJ2)
+	ar rc $(NAME) $(OBJ) $(OBJ_BONUS)
 
 clean:
 	rm -f $(OBJ) $(OBJ2)
@@ -90,4 +90,4 @@ fclean: clean
 
 re : fclean all
 
-.PHONY: all fclean clean re
+.PHONY: all bonus fclean clean re
