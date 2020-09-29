@@ -10,12 +10,13 @@
 
   
    S     ./textures/sprite.xpm   
-   C  119, 181, 254
+   C  150 ,  200,  243
  
   WE     ./textures/west_wall.xpm   
 
 
-   F   46 , 139  ,  87  
+     F     46   ,   139    ,87
+      
 
 
         

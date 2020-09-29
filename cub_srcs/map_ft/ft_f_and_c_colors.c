@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/18 15:25:51 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 14:54:45 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 16:16:26 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		ft_init_colors(t_cub3d *game, t_color color, char *line, int x)
 	if (line[x] == 'F')
 	{
 		game->color_floor = color.color;
-		printf("%d\n", game->color_floor);
 		game->verif_f++;
 	}
 	if (line[x] == 'C')
