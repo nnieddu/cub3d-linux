@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:17:53 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 11:25:56 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/29 11:56:43 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void		ft_catch_res(t_cub3d *game, char *line, int i)
 			game->height = -1;
 		i++;
 	}
-	if (game->width == -1 || game->height == -1)
+	if (game->width == -1 || game->height == -1 ||
+	game->width > __INT_MAX__ || game->height > __INT_MAX__)
 	{
 		ft_putstr("Error\nEmpty or bad resolution on arg R");
 		ft_putstr(" (need to be less than int max)");
