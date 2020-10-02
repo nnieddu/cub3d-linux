@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 13:49:35 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/18 15:35:35 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:17:36 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void		ft_texture_path_so(t_cub3d *game, char *line, int i)
 				}
 			if (line[i] == '.' && game->verif_so == 1)
 			{
-				if (!(game->north = ft_strdup_texture(ft_strchr(line, '.'))))
+				if (!(game->south = ft_strdup_texture(ft_strchr(line, '.'))))
 					ft_exit(game, 1);
 				game->verif_so = -1;
 			}
@@ -146,7 +146,7 @@ void		ft_texture_path(t_cub3d *game, char *line, int i)
 				}
 			if (line[i] == '.' && game->verif_no == 1)
 			{
-				if (!(game->south = ft_strdup_texture(ft_strchr(line, '.'))))
+				if (!(game->north = ft_strdup_texture(ft_strchr(line, '.'))))
 					ft_exit(game, 1);
 				game->verif_no = -1;
 			}

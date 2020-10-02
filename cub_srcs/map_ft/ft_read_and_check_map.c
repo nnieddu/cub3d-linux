@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:50:46 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 12:56:55 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/30 14:08:20 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void		ft_check_map_closed_right(t_cub3d *game, int i, int j, char c)
 		&& game->map[i][j + 1] != 'E' && game->map[i][j + 1] != 'W'
 		&& game->map[i][j + 1] != 'S' && game->map[i][j + 1] != '2') && j != 0)
 		{
-			ft_putstr("Error\nBad character or hole on a line.");
+			ft_putstr("Error\nBad character or hole on a line ");
+			ft_putstr("(no new line allowed between map char).");
 			ft_exit(game, 0);
 		}
 		i++;
@@ -54,7 +55,8 @@ void		ft_check_map_closed_left(t_cub3d *game, int i, int j, char c)
 		&& game->map[i][j - 1] != 'S' && game->map[i][j - 1] != '2')
 		&& j != ft_strlen(game->map[i]))
 		{
-			ft_putstr("Error\nBad character or hole on a line.");
+			ft_putstr("Error\nBad character or hole on a line ");
+			ft_putstr("(no new line allowed between map char).");
 			ft_exit(game, 0);
 		}
 		i++;
@@ -68,20 +70,14 @@ void		ft_check_new_line(t_cub3d *game)
 	int		i;
 
 	i = ft_strlen(game->tmp_map);
-	if (game->verif_no != -1 || game->verif_so != -1 || game->verif_ea != -1
-	|| game->verif_we != -1 || game->verif_sp != -1)
-	{
-		ft_putstr("Error\nBad or missing texture or sprite path.\n");
-		ft_exit(game, 0);
-	}
 	while (game->tmp_map[i] != '1')
 		i--;
 	while (i != 0)
 	{
 		if (game->tmp_map[i] == '\n' && game->tmp_map[i - 1] == '\n')
 		{
-			ft_putstr("Error\nNew line in the map or bad char out.\n");
-			ft_exit(game, 0);
+			game->tmp_map[i] = '0';
+			game->maplinecount--;
 		}
 		i--;
 	}
@@ -132,12 +128,10 @@ void		ft_map(t_cub3d *game, int ret, char *line)
 		ft_exit(game, 0);
 	}
 	ft_check_new_line(game);
-	ft_del_last_line(game, ft_strlen(game->tmp_map));
 	if (!(game->map = ft_split(game->tmp_map, '\n')))
 		ft_exit(game, 1);
-	ft_first_and_last_check(game, 0);
-	ft_check_empty_line(game, -1, 0, 0);
 	ft_check_0_out(game, 0, -1);
+	ft_spawn_is_closed(game, 0, -1);
 	ft_check_map_closed_left(game, 0, 0, ' ');
-	ft_check_map_error(game, game->maplinecount, 0);
+	ft_check_map_error(game, -1, 0);
 }

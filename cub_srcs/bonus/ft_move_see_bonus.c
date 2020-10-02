@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 14:04:30 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 10:51:29 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 08:52:35 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ void		ft_move_f_b(t_cub3d *game)
 	{
 		game->posy += game->diry * game->movespeed;
 		if (game->map[(int)(game->posy)][(int)(game->posx)] == '1' ||
-			game->map[(int)(game->posy)][(int)(game->posx)] == '2')
+		game->map[(int)(game->posy)][(int)(game->posx)] == '2')
 			game->posy -= game->diry * game->movespeed;
 		game->posx += game->dirx * game->movespeed;
 		if (game->map[(int)(game->posy)][(int)(game->posx)] == '1' ||
-			game->map[(int)(game->posy)][(int)(game->posx)] == '2')
+		game->map[(int)(game->posy)][(int)(game->posx)] == '2')
 			game->posx -= game->dirx * game->movespeed;
 	}
 	if (game->press_s == 1)
 	{
 		game->posy -= game->diry * game->movespeed;
 		if (game->map[(int)(game->posy)][(int)(game->posx)] == '1' ||
-			game->map[(int)(game->posy)][(int)(game->posx)] == '2')
+		game->map[(int)(game->posy)][(int)(game->posx)] == '2')
 			game->posy += game->diry * game->movespeed;
 		game->posx -= game->dirx * game->movespeed;
 		if (game->map[(int)(game->posy)][(int)(game->posx)] == '1' ||
-			game->map[(int)(game->posy)][(int)(game->posx)] == '2')
+		game->map[(int)(game->posy)][(int)(game->posx)] == '2')
 			game->posx += game->dirx * game->movespeed;
 	}
 }
@@ -44,7 +44,7 @@ void		ft_move_r_l(t_cub3d *game)
 	{
 		game->posy -= game->planey * game->movespeed;
 		if (game->map[(int)(game->posy)][(int)(game->posx)] == '1' ||
-			game->map[(int)(game->posy)][(int)(game->posx)] == '2')
+		game->map[(int)(game->posy)][(int)(game->posx)] == '2')
 			game->posy += game->planey * game->movespeed;
 		game->posx -= game->planex * game->movespeed;
 		if (game->map[(int)(game->posy)][(int)(game->posx)] == '1' ||
@@ -55,11 +55,11 @@ void		ft_move_r_l(t_cub3d *game)
 	{
 		game->posy += game->planey * game->movespeed;
 		if (game->map[(int)(game->posy)][(int)(game->posx)] == '1' ||
-			game->map[(int)(game->posy)][(int)(game->posx)] == '2')
+		game->map[(int)(game->posy)][(int)(game->posx)] == '2')
 			game->posy -= game->planey * game->movespeed;
 		game->posx += game->planex * game->movespeed;
 		if (game->map[(int)(game->posy)][(int)(game->posx)] == '1' ||
-			game->map[(int)(game->posy)][(int)(game->posx)] == '2')
+		game->map[(int)(game->posy)][(int)(game->posx)] == '2')
 			game->posx -= game->planex * game->movespeed;
 	}
 }
@@ -117,7 +117,7 @@ int			ft_key_move(t_cub3d *game)
 	ft_move_r_l(game);
 	ft_see_r(game);
 	ft_see_l(game);
-	ft_win(game, 0, game->height / 4, NULL);
+	ft_win(game, NULL, NULL, 0);
 	ft_raycasting(game);
 	return (1);
 }

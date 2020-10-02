@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 14:04:30 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/13 13:04:29 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/30 15:39:54 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int			ft_key_move(t_cub3d *game)
 	game->rotspeed = 0.01;
 	if (game->press_shift == 1)
 	{
-		game->movespeed = 0.018;
-		game->rotspeed = 0.012;
+		game->movespeed = 0.019;
+		game->rotspeed = 0.013;
 	}
 	ft_move_f_b(game);
 	ft_move_r_l(game);

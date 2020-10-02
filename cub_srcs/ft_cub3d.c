@@ -6,29 +6,11 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 13:00:49 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 13:02:32 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:25:07 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
-
-void		ft_del_last_line(t_cub3d *game, int i)
-{
-	if (game->verif_f != 1 || game->verif_c != 1)
-	{
-		ft_putstr("Error\nToo many  or missing argument F or C\n");
-		ft_exit(game, 0);
-	}
-	while (game->tmp_map[i] != '1')
-	{
-		if (game->tmp_map[i] == '\n' && game->tmp_map[i - 1] == '\n')
-		{
-			game->tmp_map[i - 1] = ' ';
-			game->maplinecount--;
-		}
-		i--;
-	}
-}
 
 void		ft_check_screen_size(t_cub3d *game)
 {
@@ -38,10 +20,10 @@ void		ft_check_screen_size(t_cub3d *game)
 		ft_putstr("Error :\nmap width resized because ");
 		ft_putstr("width is superior than the limit screen\n");
 	}
-	if (game->width < 250)
+	if (game->width < 400)
 	{
-		game->width = 250;
-		ft_putstr("Error :\nmap width resized to 250 because ");
+		game->width = 400;
+		ft_putstr("Error :\nmap width resized to 400 because ");
 		ft_putstr("too small width\n");
 	}
 	if (game->height_check < game->height)
@@ -50,10 +32,10 @@ void		ft_check_screen_size(t_cub3d *game)
 		ft_putstr("Error :\nmap height resized because ");
 		ft_putstr("height is superior than the limit screen\n");
 	}
-	if (game->height < 150)
+	if (game->height < 300)
 	{
-		game->height = 150;
-		ft_putstr("Error :\nmap height resized to 150 because ");
+		game->height = 300;
+		ft_putstr("Error :\nmap height resized to 300 because ");
 		ft_putstr("too small height\n");
 	}
 }
@@ -113,7 +95,7 @@ int			main(int ac, char **av)
 	ft_init_game_struct(game);
 	ft_check_args(game, ac, av);
 	ft_map(game, 0, NULL);
-	ft_fov_init(game);
+	ft_view_init(game);
 	if (!(game->mlx_ptr = mlx_init()))
 		ft_exit(game, 1);
 	mlx_get_screen_size(game->mlx_ptr, &game->width_check,
@@ -124,13 +106,13 @@ int			main(int ac, char **av)
 			game->height, "Cub3D")))
 			ft_exit(game, 1);
 	game->tracked = 1;
-	ft_texture_init(game);
+	ft_texture_and_sprite_init(game);
 	game->tracked = 8;
-	if (!(game->no_ghost_sprite = malloc(sizeof(double) * game->width)))
+	if (!(game->zbuffer = malloc(sizeof(double) * game->width)))
 		ft_exit(game, 1);
 	ft_raycasting(game);
 	mlx_loop_hook(game->mlx_ptr, ft_key_move, (void *)game);
 	mlx_loop(game->mlx_ptr);
-	ft_exit(game, 0);
+	ft_exit(game, 1);
 	return (0);
 }

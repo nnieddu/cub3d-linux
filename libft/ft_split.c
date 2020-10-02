@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:38:42 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/07 16:54:15 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/30 13:18:40 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	*ft_split_next(char *str, char **new, char c)
 	int		k;
 
 	i = 0;
-	k = 0;
 	j = 0;
+	k = 0;
 	while (str[k])
 	{
 		while (str[k] == c && str[k])

@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 11:48:23 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 14:44:24 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:17:26 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,6 @@ typedef struct		s_bpm2
 	unsigned int	clr_used;
 	unsigned int	clr_important;
 }					t_bpm2;
-
-typedef union
-{
-	int				color;
-	char			argb[3];
-}					t_color;
-
-typedef struct		s_vector
-{
-	double			x;
-	double			y;
-}					t_vector;
-
-typedef struct		s_pos
-{
-	int				x;
-	int				y;
-}					t_pos;
 
 typedef struct		s_sprites
 {
@@ -97,8 +79,14 @@ typedef	struct		s_cub3d
 	char			dir_player;
 	int				verif_c;
 	int				verif_f;
-	int				hit;
+	int				width_check;
+	int				height_check;
+	int				maplinecount;
+	int				check_color;
+	int				zero;
 	int				skip;
+	int				screenshot;
+	int				hit;
 	double			posx;
 	double			posy;
 	double			dirx;
@@ -138,7 +126,6 @@ typedef	struct		s_cub3d
 	int				bits_per_pixel;
 	int				endian;
 	int				size_line;
-	int				tex_num;
 	int				tex_x;
 	int				tex_y;
 	int				tex_pos;
@@ -180,20 +167,10 @@ typedef	struct		s_cub3d
 	int				*data_we;
 	int				*data_ea;
 	int				*data_sprite;
-	double			tex_width;
-	double			tex_height;
-	double			*no_ghost_sprite;
+	double			*zbuffer;
 	double			wallx;
 	double			texpos;
 	double			step;
-	int				screenshot;
-	int				map_startx;
-	int				map_starty;
-	int				width_check;
-	int				height_check;
-	int				maplinecount;
-	int				check_color;
-	int				z;
 }					t_cub3d;
 
 void				ft_map(t_cub3d *game, int ret, char *line);
@@ -208,13 +185,13 @@ int					ft_key_release(int key, t_cub3d *game);
 int					ft_exit(t_cub3d *game, int x);
 void				ft_texture(t_cub3d *game);
 void				ft_draw_floor_ceiling(t_cub3d *game);
-void				ft_draw(t_cub3d *game);
+void				ft_draw_walls(t_cub3d *game);
 void				ft_draw_sprite(t_cub3d *game, int i);
 void				ft_calculate_sprite(t_cub3d *game, int x);
 void				ft_save_bitmap(char *filename, t_cub3d *game);
 void				ft_init_game_struct(t_cub3d *game);
-void				ft_fov_init(t_cub3d *game);
-void				ft_texture_init(t_cub3d *game);
+void				ft_view_init(t_cub3d *game);
+void				ft_texture_and_sprite_init(t_cub3d *game);
 void				ft_exit_texture(t_cub3d *game);
 void				ft_check_map_arg(t_cub3d *game, char *line, int i);
 void				ft_colors(t_cub3d *game, char *line, int i, int j);
@@ -234,8 +211,7 @@ void				ft_check_map_closed_right(t_cub3d *game, int i, int j,
 					char c);
 void				ft_check_0_out(t_cub3d *game, int i, int j);
 void				ft_del_last_line(t_cub3d *game, int i);
-void				ft_first_and_last_check(t_cub3d *game, int i);
-void				ft_check_empty_line(t_cub3d *game, int i, int j, int s);
-void				ft_win(t_cub3d *game, int h, int w, int *vic_data);
+void				ft_spawn_is_closed(t_cub3d *game, int i, int j);
+void				ft_win(t_cub3d *game, void	*v, int *vic_data, int x);
 
 #endif

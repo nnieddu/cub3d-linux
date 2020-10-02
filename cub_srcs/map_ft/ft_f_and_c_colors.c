@@ -6,25 +6,30 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/18 15:25:51 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 16:16:26 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/30 14:32:46 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_cub3d.h"
 
-void		ft_init_colors(t_cub3d *game, t_color color, char *line, int x)
+void		ft_init_colors(t_cub3d *game, char *line, int x)
 {
-	color.argb[0] = ft_atoi(game->tab_color[2]);
-	color.argb[1] = ft_atoi(game->tab_color[1]);
-	color.argb[2] = ft_atoi(game->tab_color[0]);
+	char	rgb[4];
+	int		color;
+
+	rgb[0] = 0;
+	rgb[1] = ft_atoi(game->tab_color[0]);
+	rgb[2] = ft_atoi(game->tab_color[1]);
+	rgb[3] = ft_atoi(game->tab_color[2]);
+	color = (rgb[0] << 24) + (rgb[1] << 16) + (rgb[2] << 8) + rgb[3];
 	if (line[x] == 'F')
 	{
-		game->color_floor = color.color;
+		game->color_floor = color;
 		game->verif_f++;
 	}
 	if (line[x] == 'C')
 	{
-		game->color_ceiling = color.color;
+		game->color_ceiling = color;
 		game->verif_c++;
 	}
 }
@@ -116,11 +121,9 @@ void		ft_check_comma(t_cub3d *game, char *line, int j, int x)
 
 void		ft_colors(t_cub3d *game, char *line, int i, int j)
 {
-	t_color	color;
 	int		x;
 
 	x = 0;
-	color.argb[2] = 0;
 	while (line[x])
 	{
 		if (line[x] == 'F' || line[x] == 'C')
@@ -128,7 +131,7 @@ void		ft_colors(t_cub3d *game, char *line, int i, int j)
 			ft_check_comma(game, line, j, x);
 			ft_check_path_colors(game, line, 0, x + 1);
 			ft_error_colors(game, i, j);
-			ft_init_colors(game, color, line, x);
+			ft_init_colors(game, line, x);
 			j = -1;
 			while (game->tab_color[++j])
 				ft_memdel((void*)&game->tab_color[j]);

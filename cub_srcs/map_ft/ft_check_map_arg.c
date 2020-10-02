@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 15:34:56 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 12:45:17 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/30 13:33:01 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,13 @@ void		ft_check_0_out(t_cub3d *game, int i, int j)
 			if (game->map[i][j] == '0' && (ft_strlen(game->map[i - 1]) - 1 < j
 			|| ft_strlen(game->map[i + 1]) - 1 < j))
 			{
-				ft_putstr("Error\nA 0 is not well placed");
+				ft_putstr("Error\nA 0 is in contact with void.");
 				ft_exit(game, 0);
 			}
-			if (game->map[i][j] == '0' && game->map[i - 1][j] != '1'
-			&& game->map[i + 1][j] != '1' && game->map[i - 1][j] != '0'
-			&& game->map[i + 1][j] != '0' && game->map[i - 1][j] != 'N'
-			&& game->map[i - 1][j] != 'E' && game->map[i - 1][j] != 'W'
-			&& game->map[i - 1][j] != 'S' && game->map[i - 1][j] != '2'
-			&& game->map[i + 1][j] != 'N' && game->map[i + 1][j] != 'E'
-			&& game->map[i + 1][j] != 'W' && game->map[i + 1][j] != 'S'
-			&& game->map[i + 1][j] != '2')
+			if (game->map[i][j] == '0' && (game->map[i - 1][j] == ' '
+			|| game->map[i + 1][j] == ' '))
 			{
-				ft_putstr("Error\nA 0 is not well placed");
+				ft_putstr("Error\nA 0 is in contact with space.");
 				ft_exit(game, 0);
 			}
 		}

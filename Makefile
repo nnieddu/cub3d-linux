@@ -6,7 +6,7 @@
 #    By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/28 11:37:56 by ninieddu          #+#    #+#              #
-#    Updated: 2020/09/29 11:23:16 by ninieddu         ###   ########lyon.fr    #
+#    Updated: 2020/09/30 10:59:08 by ninieddu         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS =	cub_srcs/ft_cub3d.c\
 		cub_srcs/utils/ft_exit.c\
 		cub_srcs/utils/ft_utils.c\
 		cub_srcs/init/ft_struct_and_textures_init.c\
-		cub_srcs/init/ft_fov_init.c\
+		cub_srcs/init/ft_view_init.c\
 		cub_srcs/map_ft/ft_read_and_check_map.c\
 		cub_srcs/map_ft/ft_check_map.c\
 		cub_srcs/map_ft/ft_check_map_next.c\
@@ -34,7 +34,7 @@ SRCS_BONUS =	cub_srcs/ft_cub3d.c\
 				cub_srcs/utils/ft_exit.c\
 				cub_srcs/utils/ft_utils.c\
 				cub_srcs/init/ft_struct_and_textures_init.c\
-				cub_srcs/init/ft_fov_init.c\
+				cub_srcs/init/ft_view_init.c\
 				cub_srcs/map_ft/ft_read_and_check_map.c\
 				cub_srcs/map_ft/ft_check_map.c\
 				cub_srcs/map_ft/ft_check_map_next.c\
@@ -72,6 +72,7 @@ $(OBJS) :	$(HEADER)
 $(NAME) :	$(OBJS)
 			$(MAKE) -C $(LIBFT_PATH) all
 			$(MAKE) -C $(MLX_PATH) all
+			$(RM) ${BONUS}
 			$(CC) $(CFLAGS) -o ${NAME} $(OBJS) ${LIBS} $(FLAGS)
 
 clean :		

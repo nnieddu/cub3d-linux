@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 15:30:15 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 14:40:30 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:17:34 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ void		ft_texture_init_next(t_cub3d *game)
 	if (!(game->data_sprite = (int *)mlx_get_data_addr(game->sprite_ptr,
 		&game->bits_per_pixel, &game->size_line, &game->endian)))
 		ft_exit_texture(game);
+	ft_alloc_sprite_order(game);
 }
 
-void		ft_texture_init(t_cub3d *game)
+void		ft_texture_and_sprite_init(t_cub3d *game)
 {
 	if (!(game->img_ptr = mlx_new_image(game->mlx_ptr, game->width,
 		game->height)))
@@ -108,7 +109,7 @@ void		ft_init_game_struct(t_cub3d *game)
 	game->tmp_map = NULL;
 	game->arg_r = 0;
 	game->skip = 0;
-	game->z = 0;
+	game->zero = 0;
 	game->check_color = 0;
 	ft_init_game_struct_next(game);
 }

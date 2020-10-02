@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 16:43:43 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/23 17:31:29 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:17:32 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void		ft_texture(t_cub3d *game)
 		ft_texture_ea(game);
 	if (game->side == 1 && game->stepx >= 0)
 		ft_texture_we(game);
-	if (game->side == 0 && game->stepy <= 0)
-		ft_texture_so(game);
 	if (game->side == 0 && game->stepy > 0)
+		ft_texture_so(game);
+	if (game->side == 0 && game->stepy <= 0)
 		ft_texture_no(game);
 }

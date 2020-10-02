@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:17:53 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 14:44:13 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:17:38 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ int			ft_is_map_ok(t_cub3d *game, int i, int n, int o)
 		if (game->tmp_map[i] == '1')
 			o++;
 		if (game->tmp_map[i] == '0')
-			game->z++;
+			game->zero++;
 		if (game->tmp_map[i] == '\t')
 			t++;
 		i++;
 	}
-	if ((n < 2 || o < 4) && game->z == 0)
+	if ((n < 2 || o < 4) && game->zero == 0)
 	{
-		ft_putstr("Error\nMissings arg or empty / new line.\n");
+		ft_putstr("Error\nMissings arg or empty / no map.\n");
 		ft_exit(game, 0);
 	}
 	return (t);

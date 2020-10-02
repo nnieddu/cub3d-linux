@@ -6,13 +6,13 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 16:52:32 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/25 17:54:03 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:17:27 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_cub3d.h"
 
-void		ft_draw(t_cub3d *game)
+void		ft_draw_walls(t_cub3d *game)
 {
 	if (game->side == 0)
 		game->tex_y = game->stepy > 0 ? ((int)game->texpos &
@@ -23,9 +23,9 @@ void		ft_draw(t_cub3d *game)
 			(game->ea_height - 1)) :
 		((int)game->texpos & (game->we_height - 1));
 	if (game->side == 0)
-		game->color = game->stepy > 0 ? game->data_no[game->no_height
+		game->color = game->stepy > 0 ? game->data_so[game->no_height
 			* game->tex_y + game->tex_x] :
-			game->data_so[game->so_height * game->tex_y + game->tex_x];
+			game->data_no[game->so_height * game->tex_y + game->tex_x];
 	else if (game->side == 1)
 	{
 		if (game->ea_height * game->tex_y + game->tex_x <
@@ -66,6 +66,10 @@ void		ft_draw_floor_ceiling(t_cub3d *game)
 static void	ft_draw_sprite_next(t_cub3d *game)
 {
 	game->tex_y = (int)((game->calc * game->sp_height) / game->sp_h) / 256;
+	if (game->tex_x < 0)
+		game->tex_x = 0;
+	if (game->tex_y < 0)
+		game->tex_y = 0;
 	if (game->sp_width * game->tex_y + game->tex_x < game->sp_width *
 		game->sp_height)
 		game->color = game->data_sprite[game->sp_width *
@@ -79,9 +83,12 @@ void		ft_draw_sprite(t_cub3d *game, int i)
 		i = game->drawstarty;
 		game->tex_x = (int)(256 * (game->drawstartx - (-game->sp_w / 2
 			+ game->sp_screen)) * game->sp_width / game->sp_w) / 256;
+		if (game->tex_x < 0)
+			game->tex_x = 0;
+		if (game->tex_y < 0)
+			game->tex_y = 0;
 		if (game->drawstartx < game->width && game->transy > 0 &&
-		game->drawstartx > 0
-		&& game->transy < game->no_ghost_sprite[game->drawstartx])
+		game->drawstartx > 0 && game->transy < game->zbuffer[game->drawstartx])
 		{
 			while (++i < game->drawendy && i < game->height)
 			{
@@ -89,10 +96,8 @@ void		ft_draw_sprite(t_cub3d *game, int i)
 				ft_draw_sprite_next(game);
 				if (game->color != 0 && game->width *
 				game->height > i * game->width + game->drawstartx)
-				{
 					game->img_data[i * game->width +
 					game->drawstartx] = game->color;
-				}
 			}
 		}
 		game->drawstartx++;

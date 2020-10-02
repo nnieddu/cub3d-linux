@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 15:31:57 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/29 10:53:40 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:17:37 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		ft_exit_end(t_cub3d *game)
 	if (game->sp_dist != NULL)
 		ft_memdel((void *)&(game->sp_dist));
 	if (game->tracked > 7)
-		ft_memdel((void *)&(game->no_ghost_sprite));
+		ft_memdel((void *)&(game->zbuffer));
 	if (game->mlx_ptr != NULL)
 		ft_memdel((void*)&(game->mlx_ptr));
 }

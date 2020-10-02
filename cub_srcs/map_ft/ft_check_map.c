@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 17:26:45 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/23 12:07:17 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/09/30 15:12:11 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void		ft_check_line_next(t_cub3d *game, int i, int j)
 		game->map_spawn++;
 		if (game->map_spawn == 1)
 			game->dir_player = game->map[i][j];
-		game->posx = (double)j;
-		game->posy = (double)i;
+		game->posx = j;
+		game->posy = i;
 	}
 	if (game->map[i][j] == ' ')
 		game->map[i][j] = '1';
@@ -83,7 +83,6 @@ void		ft_check_map_error_next(t_cub3d *game, int i, int j)
 		}
 	}
 	ft_all_line(game, i, 0);
-	ft_alloc_sprite_order(game);
 	if (game->map_spawn != 1)
 	{
 		ft_putstr("Error\nMany or no spawn point in the map (N,S,E,W)\n");
@@ -93,18 +92,16 @@ void		ft_check_map_error_next(t_cub3d *game, int i, int j)
 
 void		ft_check_map_error(t_cub3d *game, int i, int j)
 {
-	while (game->map[i][j] != '1')
+	if (game->verif_f != 1 || game->verif_c != 1)
 	{
-		if (game->map[i][j] == '\0')
-		{
-			i--;
-			j = 0;
-		}
-		if (game->map[i][j] == ' ')
-		{
-			game->map[i][j] = '1';
-			j++;
-		}
+		ft_putstr("Error\nToo many  or missing argument F or C\n");
+		ft_exit(game, 0);
+	}
+	if (game->verif_no != -1 || game->verif_so != -1 || game->verif_ea != -1
+	|| game->verif_we != -1 || game->verif_sp != -1)
+	{
+		ft_putstr("Error\nBad or missing texture or sprite path.\n");
+		ft_exit(game, 0);
 	}
 	i = -1;
 	while (game->map[++i])

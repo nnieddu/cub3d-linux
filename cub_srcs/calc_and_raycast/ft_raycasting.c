@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 15:52:04 by ninieddu          #+#    #+#             */
-/*   Updated: 2020/09/25 16:35:10 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2020/10/02 13:17:31 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void		ft_calculate_draw(t_cub3d *game)
 {
-	game->lineheight = (game->height / game->perspwalldist);
-	game->drawstart = -game->lineheight / 2 + game->height / 2;
+	game->lineheight = (int)(game->height / game->perspwalldist);
+	game->drawstart = (-game->lineheight / 2) + (game->height / 2);
 	if (game->drawstart < 0)
 		game->drawstart = 0;
-	game->drawend = game->lineheight / 2 + game->height / 2;
+	game->drawend = (game->lineheight / 2) + (game->height / 2);
 	if (game->drawend >= game->height)
 		game->drawend = game->height - 1;
 }
@@ -47,10 +47,10 @@ void		ft_check_collision(t_cub3d *game)
 
 void		ft_init_map(t_cub3d *game)
 {
+	game->mapy = (int)game->posy;
+	game->mapx = (int)game->posx;
 	game->deltadistx = fabs(1 / game->raydirx);
 	game->deltadisty = fabs(1 / game->raydiry);
-	game->mapx = game->posx;
-	game->mapy = game->posy;
 	if (game->raydirx < 0)
 	{
 		game->stepx = -1;
@@ -108,21 +108,21 @@ void		ft_raycasting(t_cub3d *game)
 		game->raydiry = game->diry + game->planey * game->camerax;
 		ft_init_map(game);
 		ft_check_collision(game);
-		if (game->side == 1)
-			game->perspwalldist = (game->mapx - game->posx + (1 - game->stepx)
-				/ 2) / game->raydirx;
-		else
+		if (game->side == 0)
 			game->perspwalldist = (game->mapy - game->posy + (1 - game->stepy)
-				/ 2) / game->raydiry;
+			/ 2) / game->raydiry;
+		else
+			game->perspwalldist = (game->mapx - game->posx + (1 - game->stepx)
+			/ 2) / game->raydirx;
 		ft_calculate_draw(game);
 		ft_texture(game);
 		while (game->drawstart <= game->drawend)
 		{
-			ft_draw(game);
+			ft_draw_walls(game);
 			game->img_data[game->drawstart++ * game->width +
-				game->x] = game->color;
+			game->x] = game->color;
 		}
-		game->no_ghost_sprite[game->x] = game->perspwalldist;
+		game->zbuffer[game->x] = game->perspwalldist;
 	}
 	ft_raycasting_next(game);
 }
