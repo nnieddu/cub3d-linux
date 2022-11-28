@@ -41,10 +41,8 @@ void		ft_catch_res(t_cub3d *game, char *line, int i)
 
 int			ft_is_map_ok(t_cub3d *game, int i, int n, int o)
 {
-	int		j;
 	int		t;
 
-	j = 0;
 	t = 0;
 	while (game->tmp_map[i])
 	{
